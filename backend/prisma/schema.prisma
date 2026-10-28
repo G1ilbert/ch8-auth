@@ -1,0 +1,38 @@
+// ได้จาก npx prisma db pull (หลัง import database/ch8_auth.sql)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model menu {
+  menuId       Int      @id @default(autoincrement())
+  name         String   @db.VarChar(100)
+  price        Int
+  isBestSeller Boolean  @default(false)
+  rating       rating[]
+}
+
+model rating {
+  ratingId Int  @id @default(autoincrement())
+  userId   Int
+  menuId   Int
+  score    Int
+  user     user @relation(fields: [userId], references: [userId], onDelete: Cascade, onUpdate: NoAction, map: "rating_ibfk_1")
+  menu     menu @relation(fields: [menuId], references: [menuId], onDelete: Cascade, onUpdate: NoAction, map: "rating_ibfk_2")
+
+  @@unique([userId, menuId], map: "user_menu")
+  @@index([menuId], map: "menuId")
+}
+
+model user {
+  userId   Int      @id @default(autoincrement())
+  userName String   @unique(map: "userName") @db.VarChar(50)
+  email    String   @unique(map: "email") @db.VarChar(100)
+  password String   @db.VarChar(100)
+  role     String   @default("user") @db.VarChar(10)
+  rating   rating[]
+}

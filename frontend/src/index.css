@@ -1,0 +1,58 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: only light;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, 'Segoe UI', Tahoma, sans-serif;
+  background: #fff;
+  color: #111;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #fbe9d7;
+}
+
+.content {
+  padding: 0 20px 20px;
+}
+
+.view-switch {
+  text-align: right;
+  margin-top: 12px;
+}
+
+.view-switch button {
+  background: aquamarine;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.rating {
+  margin-left: 6px;
+  background: aquamarine;
+  padding: 0 4px;
+}
+
+li {
+  margin: 4px 0;
+}
+
+li button {
+  margin-left: 6px;
+}
+
+.food-form label {
+  display: block;
+  margin-bottom: 4px;
+}
